@@ -1,71 +1,67 @@
 #include <iostream>
-#include <string>
 #include <vector>
-#include <numeric>
-#include <functional>
 #include <algorithm>
-#include <cstdlib>
 
 using namespace std;
 
 void input_vector(vector<int>& v) {
-	int broj;
-	cout << "Unosi brojeve (0 za kraj): ";
-	do {
-		cin >> broj;
-		if (broj != 0) {
-			v.push_back(broj);
-		}
-	} while (broj != 0);
-}
-
-bool je_li_negativan(int x) {
-	return x < 0;
-
+    int broj;
+    cout << "Unesi brojeve (0 za kraj): ";
+    do {
+        cin >> broj;
+        if (broj != 0) {
+            v.push_back(broj);
+        }
+    } while (broj != 0);
 }
 
 int main() {
-	vector<int> v;
-	input_vector(v);
-	int k;
-	cout << "k: ";
-	cin >> k;
-	if (k <= 0) {
-		cout << "k mora biti veci od 0!" << endl;
-		return 0;
-	}
-	if (v.empty()) {
-		cout << "Vektor je prazan!" << endl;
-		return 0;
-	}
+    vector<int> v;
+    input_vector(v);
 
-	//brojanje negativnih:	
-	int br_neg = count_if(v.begin(), v.end(), [](int x) { return x < 0; });
-	cout << "Negativnih ima: " << br_neg << endl;
+    int k;
+    cout << "k: ";
+    cin >> k;
 
-	//prvi visekratnik broja:
-	auto it = find_if(v.begin(), v.end(), [k](int x) {return x % k == 0; });
-	if (it != v.end()) {
-		cout << "Prvi visekratnik je od " << k << "je: " << *it << "na poziciji: " << it - v.begin() << endl;
-	}
-	else {
-		cout << "Nema višekratnika broja " << k << endl;
-	}
+    if (k <= 0) {
+        cout << "k mora biti veci od 0." << endl;
+        return 0;
+    }
 
-	//najmanji i najveci
-	auto min = min_element(v.begin(), v.end());
-	auto max = max_element(v.begin(), v.end());
-	cout << "Najmanji: " << *min << " na poziciji: " << min - v.begin() << endl;
-	cout << "Najveci: " << *max << " na poziciji: " << max - v.begin() << endl;
+    if (v.empty()) {
+        cout << "Vektor je prazan." << endl;
+        return 0;
+    }
 
-	//uklanjanje visekratnika:
-	v.erase(remove_if(v.begin(), v.end(), [k](int x) { return x % k == 0; }), v.end());
-	cout << "Bez visekratnika: " << endl;
-	for (int x : v) {
-		cout << x << " ";
-	}
+    //Brojanje negativnih brojeva
+    int negativnih = count_if(v.begin(), v.end(), [](int x) { return x < 0; });
+    cout << "Negativnih: " << negativnih << endl;
+
+    //Prvi visekratnik broja k
+    auto it = find_if(v.begin(), v.end(), [k](int x) { return x % k == 0; });
+    if (it != v.end()) {
+        cout << "Prvi visekratnik od " << k << ": " << *it << " (pozicija " << it - v.begin() << ")" << endl;
+    }
+    else {
+        cout << "Nema visekratnika broja " << k << endl;
+    }
+
+    // Najmanji i najveci broj
+    auto min = min_element(v.begin(), v.end());
+    auto max = max_element(v.begin(), v.end());
+    cout << "Min: " << *min << " (pozicija " << min - v.begin() << ")";
+    cout << ", Max: " << *max << " (pozicija " << max - v.begin() << ")" << endl;
+
+    // Uklanjanje visekratnika broja k
+    v.erase(remove_if(v.begin(), v.end(), [k](int x) { return x % k == 0; }), v.end());
+
+    cout << "Bez visekratnika: ";
+    for (int x : v) {
+        cout << x << " ";
+    }
 	cout << endl;
 	cin.ignore(1000, '\n');
-	cin.get();
-
+	cin.get() //nezatvaranje konzolnog prozora
 }
+
+// da se unese odmah 0 vektor bi bio prazan jer bi min_element i max_element vratili v.end()
