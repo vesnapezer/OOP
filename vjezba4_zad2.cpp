@@ -21,7 +21,7 @@ int main() {
         {"Blinding Lights", "The Weeknd", 2019, 4100},
         {"Despacito", "Luis Fonsi ft. Daddy Yankee", 2017, 3200},
         {"Uptown Funk", "Mark Ronson ft. Bruno Mars", 2014, 1800},
-        {"Counting Stars", "OneRepublic", 2013, 2100},
+		{"Counting Stars", "OneRepublic", 2013, 2100},
         {"Closer", "The Chainsmokers ft. Halsey", 2016, 2800},
         {"Wake Me Up", "Avicii", 2013, 2200},
         {"Bad Guy", "Billie Eilish", 2019, 2500},
