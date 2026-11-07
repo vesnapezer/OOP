@@ -56,6 +56,7 @@ int main() {
     auto it = find_if(songs.begin(), songs.end(), [artist](const Song& s) {
             return s.artist == artist;
         });
+	//prethodno smo sortirali pjesme po godini uzlazno, prva pjesma pronadjena za tog izvodjaca je njegova najstarija pjesma
 
     if (it != songs.end()) {
         cout << "Najstarija pjesma: ";
