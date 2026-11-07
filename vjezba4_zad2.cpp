@@ -19,16 +19,16 @@ void print_song(const Song& s) {
 int main() {
     vector<Song> songs{
         {"Blinding Lights", "The Weeknd", 2019, 4100},
-        {"Despacito", "Luis Fonsi ft. Daddy Yankee", 2017, 3200},
-        {"Uptown Funk", "Mark Ronson ft. Bruno Mars", 2014, 1800},
+        {"Despacito", "Luis Fonsi", 2017, 3200},
+        {"Uptown Funk", "Bruno Mars", 2014, 1800},
 		{"Counting Stars", "OneRepublic", 2013, 2100},
-        {"Closer", "The Chainsmokers ft. Halsey", 2016, 2800},
+        {"Closer", "The Chainsmokers", 2016, 2800},
         {"Wake Me Up", "Avicii", 2013, 2200},
         {"Bad Guy", "Billie Eilish", 2019, 2500},
         {"Radioactive", "Imagine Dragons", 2012, 1700}		
     };
 
-    // Sortiranje po godini, a zatim po naslovu
+    // Sortiranje prvo po godini, a onda po naslovu
     sort(songs.begin(), songs.end(), [](const Song& a, const Song& b) {
             if (a.year != b.year) {
                 return a.year < b.year;
