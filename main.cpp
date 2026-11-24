@@ -1,36 +1,34 @@
 #include <iostream>
-#include "Volume.h"
-#include "Clip.h"
-#include "Music.h"
-#include "Counters.h"
+#include "IntStack.h"
+#include "LogFile.h"
+#include "RecentlyPlayed.h"
+#include "Board.h"
 
 int main() {
-    // Volume
-    Volume v(80);
-    v.up(); // korak 10 -> 90
-    std::cout << "Volume: " << v.get() << "%\n";
+    // IntStack
+    IntStack s1(5);
+    s1.push(10);
+    s1.push(20);
+    IntStack s2 = s1; // deep copy
+    s2.push(30);
+    std::cout << "s1 top: " << s1.top() << ", s2 top: " << s2.top() << '\n';
 
-    // Clip
-    Clip c("Intro", 5, 25);
-    c.print();
+    // LogFile
+    LogFile log("test.log");
+    log.write("Zapisujem poruku...");
 
-    // Album i Player
-    Album alb("Greatest Hits", { "Song 1", "Artist A", 2020 });
-    alb.add_song({ "Song 2", "Artist A", 2021 });
-    Player p;
-    p.load(alb);
-    p.play();
+    // RecentlyPlayed
+    RecentlyPlayed rp(3);
+    rp.play("Pjesma A");
+    rp.play("Pjesma B");
+    rp.play("Pjesma C");
+    rp.play("Pjesma D");
+    rp.print();
 
-    // Ticket i Coin
-    Ticket t1, t2;
-    std::cout << "Zadnji izdani ticket ID: " << Ticket::total_issued() << '\n';
-
-    std::cout << "Aktivnih novcica: " << Coin::current_active() << '\n';
-    {
-        Coin c1, c2;
-        std::cout << "U bloku novcica: " << Coin::current_active() << '\n';
-    }
-    std::cout << "Nakon bloka novcica: " << Coin::current_active() << '\n';
+    // Board
+    Board b(3, 3, '.');
+    b.set(1, 1, 'X');
+    b.print();
 
     return 0;
 }
